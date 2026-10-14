@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="imagenes/1264187-eye-1873959_640.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Haunted School</title>
+</head>
+<body>
+    <div id="contenedor-inicio">
+        
+        <div id="fondo-inicio">
+            <div class="niebla-1"></div>
+            <div class="niebla-2"></div>
+            <div class="ojos"></div>
+            <div id="lluvia-pixel"></div>
+        </div>
+
+        <div id="contenido-inicio">
+            <h1 class="titulo-principal">HAUNTED</h1>
+            <h1 class="titulo-secundario">SCHOOL</h1>
+            <div class="linea-sangre"></div>
+            
+            <p class="subtitulo">◄ JUEGO DE TERROR ESCOLAR►</p>
+            
+            <div class="menu">
+                <button class="btn-jugar" onclick="abrirModalJugador()">▶ INICIAR JUEGO</button>
+                <button class="btn-ranking" onclick="mostrarRanking()">🏆 RANKING</button>
+                <button class="btn-config" onclick="irAPagina('confi.html')">⚙ CONFIGURACIÓN</button>
+                <button class="btn-creditos" onclick="mostrarCreditos()">📜 CRÉDITOS</button>
+            </div>
+            
+            <p class="version">v3.0 | 2026</p>
+        </div>
+
+        <div id="modal-creditos" style="display:none;">
+            <div class="modal-contenido">
+                <h2>📜 CRÉDITOS</h2>
+                <p>Haunted School - Proyecto Final</p>
+                <p>Desarrollado por: Rodríguez Ariana</p>
+                <button onclick="cerrarCreditos()">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="modal-ranking" style="display:none;">
+            <div class="modal-contenido">
+                <h2>🏆 MEJORES PUNTAJES</h2>
+                <div id="lista-ranking" style="text-align:left;max-height:320px;overflow-y:auto;margin:20px 0;"></div>
+                <button onclick="cerrarRanking()">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="modal-jugador" style="display:none;">
+            <div class="modal-contenido">
+                <h2>👤 SELECCIONA TU PERFIL</h2>
+                <p id="texto-jugador-actual" style="color:#888;font-size:0.5rem;margin:15px 0;"></p>
+                <div id="botones-jugador" style="display:flex;flex-direction:column;gap:10px;margin-top:20px;"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <audio id="musicaFondo" loop>
+        <source src="Terror and horror music  Música de terror y horror  YMelgar - Regret COPYRIGHT FREE.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="imagenes/1264187-eye-1873959_640.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Configuración - Haunted School</title>
+</head>
+<body>
+    <div id="contenedor-config">
+        <h1>⚙ CONFIGURACIÓN</h1>
+        
+        <div class="config-menu">
+            <div class="config-item">
+                <label>VOLUMEN</label>
+                <div class="slider-container">
+                    <span>🔇</span>
+                    <input type="range" id="volumen" min="0" max="100" value="70">
+                    <span>🔊</span>
+                    <button id="btnMusica" class="btn-musica-config" onclick="toggleMusica()">►</button>
+                    <span id="textovolumen">70%</span>
+                </div>
+            </div>
+
+            <div class="config-item">
+                <label>DIFICULTAD</label>
+                <div class="dificultad-botones">
+                    <button class="dif-btn" data-dificultad="facil">FÁCIL</button>
+                    <button class="dif-btn activo" data-dificultad="normal">NORMAL</button>
+                    <button class="dif-btn" data-dificultad="dificil">DIFÍCIL</button>
+                </div>
+            </div>
+
+            <div class="config-item">
+                <label>CONTROLES</label>
+                <div class="controles-info">
+                    <p><span>◄ ►</span> Moverse</p>
+                    <p><span>▲</span> Saltar</p>
+                    <p><span>ESPACIO</span> Interactuar</p>
+                </div>
+            </div>
+
+            <button class="btn-volver" onclick="irAPagina('index.html')">◄ VOLVER</button>
+        </div>
+    </div>
+
+    <audio id="musicaFondo" loop>
+        <source src="Terror and horror music  Música de terror y horror  YMelgar - Regret COPYRIGHT FREE.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

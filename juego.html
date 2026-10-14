@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="imagenes/1264187-eye-1873959_640.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Haunted School - Juego</title>
+</head>
+<body>
+    <div id="contenedor-juego">
+        
+        <div id="info-juego">
+            <div class="info-item">❤️ <span id="vidas">3</span></div>
+            <div class="info-item">⭐ <span id="puntos">0</span></div>
+            <div class="info-item">📖 <span id="nivel">1/10</span></div>
+            <div class="info-item">🎯 <span id="objetivo">Encuentra la llave</span></div>
+            <div class="info-item">🎮 <span id="dificultad-hud">NORMAL</span></div>
+        </div>
+
+        <div class="info-item botones-guardado">
+            <button onclick="guardarProgreso()" class="btn-guardar" title="Guardar progreso">💾</button>
+            <button onclick="toggleControles()" class="btn-cargar" title="Mostrar/Ocultar controles" id="btn-toggle-controles">🎮</button>
+            <button onclick="abrirConfigEnJuego()" class="btn-cargar" title="Configuración">⚙</button>
+            <button onclick="mostrarRankingJuego()" class="btn-cargar" title="Ver ranking">🏆</button>
+    <button onclick="volverAlMenuDesdeJuego()" class="btn-cargar" title="Volver al menú">🏠</button>
+        </div>
+
+        <div id="escenario">
+            <canvas id="canvas"></canvas>
+            
+            <div id="controles">
+                <button id="btn-izquierda">◄</button>
+                <button id="btn-saltar">▲</button>
+                <button id="btn-derecha">►</button>
+                <button id="btn-interactuar">🔍</button>
+            </div>
+            
+            <div id="mensaje">Usa las flechas para moverte</div>
+        </div>
+
+        <div id="inventario">
+            <span>INVENTARIO</span>
+            <div id="items-inventario"></div>
+        </div>
+
+        <div id="dialogo-modal" style="display:none;">
+            <div class="dialogo-contenido">
+                <div class="dialogo-personaje">
+                    <div class="personaje-icono">👤</div>
+                    <div class="personaje-nombre" id="dialogo-nombre">???</div>
+                </div>
+                
+                <div class="dialogo-texto" id="dialogo-texto">
+                    <span id="texto-escrito"></span>
+                    <span class="cursor-parpadeo">▌</span>
+                </div>
+                
+                <div class="dialogo-continuar" id="dialogo-continuar" style="display:none;">
+                    <button onclick="cerrarDialogo()">▶ CONTINUAR</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over" style="display:none;">
+            <h2>HAS MUERTO</h2>
+            <p style="color:#666;font-size:0.5rem;margin:15px 0;">Puntos: <span id="puntos-finales">0</span></p>
+            <button onclick="reiniciarJuegoCompleto()">REINTENTAR</button>
+            <button onclick="salirAlMenu()">GUARDAR Y SALIR</button>
+        </div>
+
+        <div id="nivel-completado" style="display:none;">
+            <h2>NIVEL COMPLETADO</h2>
+            <button id="btn-siguiente-nivel" onclick="abrirDialogoNivel()">▶ VER MENSAJE</button>
+            <button onclick="avanzarNivelDirecto()">▶ SIGUIENTE</button>
+        </div>
+
+        <div id="config-en-juego" style="display:none;">
+            <div class="config-modal-contenido">
+                <h2>⚙ CONFIGURACIÓN</h2>
+                
+                <label>VOLUMEN</label>
+                <div class="slider-container">
+                    <span>🔇</span>
+                    <input type="range" id="volumenJuego" min="0" max="100" value="70">
+                    <span>🔊</span>
+                    <span id="textoVolumenJuego">70%</span>
+                </div>
+                
+                <label>DIFICULTAD</label>
+                <div class="dificultad-botones">
+                    <button class="dif-btn dif-btn-juego" data-dif="facil">FÁCIL</button>
+                    <button class="dif-btn dif-btn-juego activo" data-dif="normal">NORMAL</button>
+                    <button class="dif-btn dif-btn-juego" data-dif="dificil">DIFÍCIL</button>
+                </div>
+                
+                <button class="btn-cerrar-config" onclick="cerrarConfigEnJuego()">◄ CERRAR</button>
+            </div>
+        </div>
+
+    <div id="final-modal" style="display:none;">
+       <div class="final-contenido">
+        
+         <div class="final-dialogo" id="final-dialogo">
+            <div class="final-personaje">??? :</div>
+            <div class="final-texto" id="final-texto"></div>
+         </div>
+        
+         <div class="final-input-container" id="final-input-container" style="display:none;">
+            <input type="text" id="final-input" placeholder="Escribe tu respuesta..." maxlength="60" autocomplete="off">
+            <button id="final-btn-enviar" onclick="enviarRespuestaFinal()">▶ ENVIAR</button>
+         </div>
+        
+         <p class="final-gracias" id="final-gracias" style="display:none;">HAUNTED SCHOOL</p>
+        </div>
+    </div>
+
+        <div id="ranking-juego" style="display:none;">
+    <div class="modal-contenido">
+        <h2>🏆 MEJORES PUNTAJES</h2>
+        <div id="lista-ranking-juego" style="text-align:left;max-height:320px;overflow-y:auto;margin:20px 0;"></div>
+        <button onclick="cerrarRankingJuego()">CERRAR</button>
+    </div>
+</div>
+
+    </div>
+
+    <audio id="musicaFondo" loop>
+        <source src="Terror and horror music  Música de terror y horror  YMelgar - Regret COPYRIGHT FREE.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
